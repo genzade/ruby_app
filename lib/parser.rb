@@ -1,30 +1,18 @@
 class Parser
-  attr_reader :file_path
-
-  def initialize(file_path)
-    @file_path = file_path
-    # @data = most_viewed_pages
+  def initialize(file_path, data=Hash.new(0))
+    @file = File.read(file_path).split(/\n+/)
+    @data = data
   end
 
   def most_viewed_pages
-    file = date(@file_path)
-    pages_views = file.map { |x| x.split(' ') }.each(&:pop).flatten # deletes IP addresses, splits file data into array
-    # p pages_views
-    popular_pages = Hash.new(0)
-    pages_views.each { |v| popular_pages[v] += 1 } # hash key[pages]: :value[number of views]
-    p popular_pages
-
-    popular_pages.sort_by { |_key, value| value }.reverse.to_h
-
+    remove_ips_from(@file)
+    sorted_hash = @data.sort_by { |_key, value| value }.reverse.to_h
+    sorted_hash.map { |k, v| "#{k} #{v} visits" }.join("\n")
   end
-
-  # def display_most_viewed
-  #   @data.map{ |k, v| "#{k} #{v} visits" }.join("\n")
-  # end
 
   private
 
-  def date(file_path)
-    File.read(file_path).split(/\n+/)
+  def remove_ips_from(arr)
+    arr.map { |x| x.split(' ') }.each(&:pop).flatten.each { |v| @data[v] += 1 }
   end
 end
