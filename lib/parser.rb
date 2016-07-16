@@ -16,3 +16,8 @@ class Parser
     arr.map { |x| x.split(' ') }.each(&:pop).flatten.each { |v| @data[v] += 1 }
   end
 end
+
+most_viewed_list = 
+  "list of webpages with most page views ordered from most pages views;\n"
+  
+puts most_viewed_list + Parser.new(ARGV.first).most_viewed_pages
