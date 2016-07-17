@@ -19,4 +19,4 @@ b. Returns the following:
          /index     5 unique views
          etc...
 
-This app has been extended, for a refactored and redigned solution please switch to the parse_extraction branch.
+This app has been extended, you can see a refactored and redesigned solution [here](https://github.com/genzade/ruby_app/tree/parse_extraction).
