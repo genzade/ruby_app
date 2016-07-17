@@ -12,7 +12,8 @@ describe FileAsArray do
 
   describe '#initialize' do
     it 'should only accept .log files' do
-      expect { FileAsArray.new('./README.md') }.to raise_error 'invalid file, must be .log'
+      expect { FileAsArray.new('./README.md') }
+        .to raise_error 'invalid file, must be .log'
     end
   end
 

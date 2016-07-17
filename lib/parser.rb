@@ -1,9 +1,9 @@
 require './lib/file_as_array'
 
 class Parser
-  def initialize(file_path, data=Hash.new(0))
+  def initialize(file_path)
     @file = FileAsArray.new(file_path)
-    @data = data
+    @data = Hash.new(0)
   end
 
   def most_viewed_pages
