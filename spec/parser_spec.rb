@@ -4,12 +4,12 @@ describe Parser do
   subject(:parser) { described_class.new('./sampleWebserver.log') }
 
   results =
-"/help_page/1 4 visits
-/home 2 visits
-/about/2 1 visits
-/index 1 visits
-/contact 1 visits
-/about 1 visits"
+"/help_page/1 6 visits
+/about/2 4 visits
+/index 4 visits
+/home 4 visits
+/contact 4 visits
+/about 3 visits"
 
   describe '#most_viewed_pages' do
     context 'given a file' do
