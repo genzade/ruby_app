@@ -11,7 +11,15 @@ describe Parser do
 /contact 4 visits
 /about 3 visits'
 
-  unique_pageviews = {
+  unique_pageviews_result =
+"/help_page/1 5 unique views
+/about 3 unique views
+/contact 3 unique views
+/home 4 unique views
+/about/2 3 unique views
+/index 4 unique views"
+
+  unique_ips = {
     '126.318.035.038' => ['/help_page/1', '/about'],
     '184.123.665.067' => ['/contact', '/home', '/about/2'],
     '444.701.448.104' => ['/about/2', '/index', '/home'],
@@ -34,8 +42,12 @@ describe Parser do
       end
 
       it 'returns hash with key, value IP address => pages viewed' do
-        expect(parser.unique).to eq unique_pageviews
+        expect(parser.unique).to eq unique_ips
       end
     end
+  end
+
+  it 'returns unique pageviews' do
+    expect(parser.unique_pageviews).to eq unique_pageviews_result
   end
 end
