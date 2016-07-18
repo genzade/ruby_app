@@ -1,8 +1,6 @@
 require_relative 'file_as_array'
 
 class Parser
-  attr_reader :pageviews
-
   def initialize(file_path)
     @file = FileAsArray.new(file_path)
     @data = Hash.new(0)
@@ -14,23 +12,27 @@ class Parser
     sorted_hash.map { |k, v| "#{k} #{v} visits" }.join("\n")
   end
 
-  def unique
-    @pageviews = @file.file_data.map { |line| line.split(' ') }
-    @pageviews.group_by { |_page, ip| ip }.each do |_key, value|
-      value.each(&:pop).flatten!.uniq!
-    end
-  end
-
   def unique_pageviews
     pages = unique.values.flatten
-    result = pages.each_with_object(Hash.new(0)) { |page,counts| counts[page] += 1 }
+    result = pages.each_with_object(Hash.new(0)) do |page, counts|
+      counts[page] += 1
+    end
     result.map { |k, v| "#{k} #{v} unique views" }.join("\n")
   end
 
   private
 
+  attr_reader :pageviews
+
   def remove_ips_from(arr)
     arr.map { |x| x.split(' ') }.each(&:pop).flatten.each { |v| @data[v] += 1 }
+  end
+
+  def unique
+    @pageviews = @file.file_data.map { |line| line.split(' ') }
+    @pageviews.group_by { |_page, ip| ip }.each do |_key, value|
+      value.each(&:pop).flatten!.uniq!
+    end
   end
 end
 
