@@ -1,4 +1,4 @@
-require './lib/file_as_array'
+require_relative 'file_as_array'
 
 class Parser
   def initialize(file_path)
@@ -10,6 +10,13 @@ class Parser
     remove_ips_from(@file.file_data)
     sorted_hash = @data.sort_by { |_key, value| value }.reverse.to_h
     sorted_hash.map { |k, v| "#{k} #{v} visits" }.join("\n")
+  end
+
+  def unique
+    pageviews = @file.file_data.map { |line| line.split(' ') }
+    pageviews.group_by { |_page, ip| ip }.each do |_key, value|
+      value.each(&:pop).flatten!.uniq!
+    end
   end
 
   private
