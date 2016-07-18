@@ -10,6 +10,11 @@ b. Returns the following:
          /home 90 visits
          /index 80 visits
          etc...
+  > list of webpages with most unique page views also ordered
+       e.g.:
+           /about/2   8 unique views
+           /index     5 unique views
+           etc...
 
 ## installation
 
@@ -29,10 +34,16 @@ e.g. if you want to check someFileName.log
 $ cd ruby_app
 $ ruby lib/parser.rb path_to_target_file/someFileName.log
 ```
+This would return;
+
+```
+list of webpages with most page views ordered from most page views;
+
+page [number of visits] visits
+
+list of webpages with most unique page views also ordered;
+
+page [number of unique views] unique views
+```
 ## TODOS
 
-> list of webpages with most unique page views also ordered
-     e.g.:
-         /about/2   8 unique views
-         /index     5 unique views
-         etc...
