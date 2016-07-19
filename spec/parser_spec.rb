@@ -13,11 +13,11 @@ describe Parser do
 
   unique_pageviews_result =
 "/help_page/1 5 unique views
-/about 3 unique views
-/contact 3 unique views
 /home 4 unique views
-/about/2 3 unique views
-/index 4 unique views"
+/index 4 unique views
+/contact 3 unique views
+/about 3 unique views
+/about/2 3 unique views"
 
   describe '#most_viewed_pages' do
     context 'given a file' do

@@ -17,7 +17,8 @@ class Parser
     result = pages.each_with_object(Hash.new(0)) do |page, counts|
       counts[page] += 1
     end
-    result.map { |k, v| "#{k} #{v} unique views" }.join("\n")
+    sorted_hash = result.sort_by {|_key, value| value}.reverse.to_h
+    sorted_hash.map { |k, v| "#{k} #{v} unique views" }.join("\n")
   end
 
   private
