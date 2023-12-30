@@ -1,5 +1,17 @@
 ## ruby_app
 
+### The Task
+
+```
+
+This test should not take you longer than two hours to complete.
+
+What we are looking for: functionality, efficiency, readability and tests
+Use this test to demonstrate your understanding of OO and TDD.
+
+
+1. ruby_app
+
 Write a ruby script that:
 
 a. Receives a log as argument (webserver.log is provided)
@@ -12,11 +24,9 @@ b. Returns the following:
          /home 90 visits
          /index 80 visits
          etc...
-
   > list of webpages with most unique page views also ordered
      e.g.:
          /about/2   8 unique views
          /index     5 unique views
          etc...
-
-This app has been extended, you can see a refactored and redesigned solution [here](https://github.com/genzade/ruby_app/tree/parse_extraction).
+```
