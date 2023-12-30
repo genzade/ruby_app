@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require_relative '../lib/log_parser'
+
+require 'optparse'
+
+# this is a wrapper for the binary
+class ParserBin
+  attr_reader :args
+
+  def self.call
+    new.call
+  end
+
+  def initialize
+    @args = parsed_args
+  end
+
+  def call
+    filename       = args[:filename]
+    uniq_pageviews = args[:uniq_pageviews]
+
+    puts LogParser.call(filename:, uniq_pageviews:)
+  rescue LogParser::Errors::MissingFileError, LogParser::Errors::InvalidLogFileError => e
+    warn "#{e.class}: #{e.message}"
+  end
+
+  private
+
+  def parsed_args
+    options = {}
+    option_parser = OptionParser.new do |opts|
+      opts.on(
+        '-u', '--uniq_pageviews',
+        'Return all list of webpages with most unique page views also ordered'
+      )
+    end
+
+    option_parser.parse!(into: options)
+    options[:filename] = ARGV[0]
+
+    options
+  end
+end
+
+ParserBin.call
